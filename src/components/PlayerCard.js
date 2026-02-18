@@ -53,8 +53,6 @@ export class PlayerCard {
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: 100%;
-            min-height: 0;
           }
   
           .player-card-header {
@@ -97,8 +95,7 @@ export class PlayerCard {
   
           .player-canvas {
             width: 100%;
-            flex: 1;
-            min-height: 0;
+            aspect-ratio: 1;
             background: #111;
           }
   
