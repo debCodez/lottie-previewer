@@ -12,18 +12,16 @@ export class PlayerCard {
   
     mount() {
       const container = this._el.querySelector('.player-canvas')
-  
-      // Wait one frame so the element is in the DOM and has real dimensions
+
+      // Wait one frame so the element is in the DOM and has real dimensions.
+      // Deep-clone animationData so lottie-web's in-place mutations on asset
+      // entries (img references, loaded flags) don't corrupt sibling renderers.
       requestAnimationFrame(() => {
-        const rect = container.getBoundingClientRect()
-        const size = rect.width > 0 ? rect.width : 300
-        container.style.width = size + 'px'
-        container.style.height = size + 'px'
-  
-        this.renderer = new this.RendererClass(container, this.animationData)
+        const data = JSON.parse(JSON.stringify(this.animationData))
+        this.renderer = new this.RendererClass(container, data)
         this.renderer.mount()
         this.sync.register(this.renderer)
-  
+
         this.renderer.onEnterFrame((frame) => {
           if (this.sync._onFrameCb) this.sync._onFrameCb(frame)
         })
