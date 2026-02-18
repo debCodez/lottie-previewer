@@ -165,6 +165,8 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            height: 100%;
+            min-height: 0;
           }
   
           .player-card-header {
@@ -207,7 +209,8 @@
   
           .player-canvas {
             width: 100%;
-            aspect-ratio: 1;
+            flex: 1;
+            min-height: 0;
             background: #111;
           }
   
@@ -225,16 +228,26 @@
         .preview-grid-root {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 12px;
+          flex: 1;
+          min-height: 0;
         }
 
         .preview-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 16px;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 12px;
+          flex: 1;
+          min-height: 0;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 900px) {
+          .preview-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 500px) {
           .preview-grid {
             grid-template-columns: 1fr;
           }
@@ -259,8 +272,10 @@
   </style>
 `);app.appendChild(header);const main=document.createElement("main");main.style.cssText=`
   flex: 1;
-  padding: 32px;
+  min-height: 0;
+  padding: 24px 32px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-`;app.appendChild(main);const uploader=new Uploader;main.appendChild(uploader.render());uploader.onFile(t=>{const e=main.querySelector(".preview-grid-wrapper");e&&e.remove();const r=new PreviewGrid(t),i=document.createElement("div");i.className="preview-grid-wrapper",i.appendChild(r.render()),main.appendChild(i)});const themeBtn=document.getElementById("theme-toggle");let isLight=!1;themeBtn.addEventListener("click",()=>{isLight=!isLight,document.body.classList.toggle("light",isLight),themeBtn.textContent=isLight?"🌙":"☀️"});
+  gap: 16px;
+  overflow: hidden;
+`;app.appendChild(main);const uploader=new Uploader;main.appendChild(uploader.render());uploader.onFile(t=>{const e=main.querySelector(".preview-grid-wrapper");e&&e.remove();const r=new PreviewGrid(t),i=document.createElement("div");i.className="preview-grid-wrapper",i.style.cssText="flex: 1; min-height: 0; display: flex; flex-direction: column;",i.appendChild(r.render()),main.appendChild(i)});const themeBtn=document.getElementById("theme-toggle");let isLight=!1;themeBtn.addEventListener("click",()=>{isLight=!isLight,document.body.classList.toggle("light",isLight),themeBtn.textContent=isLight?"🌙":"☀️"});
