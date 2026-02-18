@@ -32,10 +32,12 @@ app.appendChild(header)
 const main = document.createElement('main')
 main.style.cssText = `
   flex: 1;
-  padding: 32px;
+  min-height: 0;
+  padding: 24px 32px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
+  overflow: hidden;
 `
 app.appendChild(main)
 
@@ -52,6 +54,7 @@ uploader.onFile((animationData) => {
   const grid = new PreviewGrid(animationData)
   const wrapper = document.createElement('div')
   wrapper.className = 'preview-grid-wrapper'
+  wrapper.style.cssText = 'flex: 1; min-height: 0; display: flex; flex-direction: column;'
   wrapper.appendChild(grid.render())
   main.appendChild(wrapper)
 })
