@@ -165,8 +165,6 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: 100%;
-            min-height: 0;
           }
   
           .player-card-header {
@@ -209,8 +207,7 @@
   
           .player-canvas {
             width: 100%;
-            flex: 1;
-            min-height: 0;
+            aspect-ratio: 1;
             background: #111;
           }
   
@@ -237,8 +234,7 @@
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 12px;
-          flex: 1;
-          min-height: 0;
+          align-items: start;
         }
 
         @media (max-width: 900px) {
