@@ -31,10 +31,11 @@ export function readLottieFile(file) {
       reader.onload = (e) => {
         try {
           const zip = unzipSync(new Uint8Array(e.target.result))
-          // .lottie zips always contain animations/data.json (or data.json at root)
-          const entry =
-            zip['animations/data.json'] ||
-            zip[Object.keys(zip).find((k) => k.endsWith('.json'))]
+          // Find the first animation JSON — prefer animations/ folder, skip manifest.json
+          const animKey =
+            Object.keys(zip).find((k) => k.startsWith('animations/') && k.endsWith('.json')) ||
+            Object.keys(zip).find((k) => k.endsWith('.json') && !k.includes('manifest'))
+          const entry = zip[animKey]
 
           if (!entry) {
             reject(new Error('No animation JSON found inside .lottie file'))
