@@ -70,3 +70,258 @@ body.light .player-canvas {
 header {
   justify-content: space-between;
 }
+
+/* ─── Warning Panel ─────────────────────────────────────────────────────── */
+
+.wp-panel-wrapper {
+  flex-shrink: 0;
+}
+
+.wp-panel {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+/* Header — clean (no issues) */
+.wp-header--clean {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--success);
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: default;
+}
+
+.wp-header--clean .wp-header-icon {
+  font-size: 14px;
+}
+
+/* Header — issues (clickable) */
+.wp-header--issues {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface2);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.wp-header--issues:hover {
+  background: var(--border);
+}
+
+.wp-header-icon {
+  font-size: 15px;
+  color: var(--warning);
+  flex-shrink: 0;
+}
+
+.wp-header-title {
+  flex-shrink: 0;
+}
+
+.wp-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.wp-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.2px;
+}
+
+.wp-badge--critical {
+  background: color-mix(in srgb, var(--error) 18%, transparent);
+  color: var(--error);
+  border: 1px solid color-mix(in srgb, var(--error) 35%, transparent);
+}
+
+.wp-badge--warning {
+  background: color-mix(in srgb, var(--warning) 18%, transparent);
+  color: var(--warning);
+  border: 1px solid color-mix(in srgb, var(--warning) 35%, transparent);
+}
+
+.wp-chevron {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Body */
+.wp-body {
+  padding: 8px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.wp-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--error);
+  padding: 10px 2px 6px;
+}
+
+.wp-section-label--warning {
+  color: var(--warning);
+}
+
+/* Issue cards */
+.wp-card {
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background: var(--surface2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wp-card--critical {
+  border-left-color: var(--error);
+}
+
+.wp-card--warning {
+  border-left-color: var(--warning);
+}
+
+.wp-card-top {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.wp-card-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.wp-card-icon--critical {
+  background: color-mix(in srgb, var(--error) 20%, transparent);
+  color: var(--error);
+}
+
+.wp-card-icon--warning {
+  background: color-mix(in srgb, var(--warning) 20%, transparent);
+  color: var(--warning);
+}
+
+.wp-card-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.wp-count {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.wp-renderer-pills {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.wp-renderer-pill {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  white-space: nowrap;
+}
+
+/* Location breadcrumbs */
+.wp-locations {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wp-location {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: 'SF Mono', 'Menlo', monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wp-location--more {
+  font-style: italic;
+}
+
+/* Description */
+.wp-card-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Fix box */
+.wp-fix-box {
+  display: flex;
+  gap: 8px;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  border-radius: 6px;
+  padding: 8px 10px;
+  align-items: flex-start;
+}
+
+.wp-fix-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+
+.wp-fix-text {
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.5;
+}

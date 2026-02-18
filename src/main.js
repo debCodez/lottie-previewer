@@ -1,6 +1,7 @@
 import './style.css'
 import { Uploader } from './components/Uploader.js'
 import { PreviewGrid } from './components/PreviewGrid.js'
+import { WarningPanel } from './components/WarningPanel.js'
 
 const app = document.getElementById('app')
 
@@ -45,12 +46,22 @@ app.appendChild(main)
 const uploader = new Uploader()
 main.appendChild(uploader.render())
 
-// When a file is loaded, boot the preview grid
+// When a file is loaded, boot the warning panel + preview grid
 uploader.onFile((animationData) => {
-  // Remove any existing grid
-  const existing = main.querySelector('.preview-grid-wrapper')
-  if (existing) existing.remove()
+  // Remove any existing panel + grid
+  const existingPanel = main.querySelector('.wp-panel-wrapper')
+  if (existingPanel) existingPanel.remove()
+  const existingGrid = main.querySelector('.preview-grid-wrapper')
+  if (existingGrid) existingGrid.remove()
 
+  // Warning panel — sits between uploader and preview grid
+  const panel = new WarningPanel(animationData)
+  const panelWrapper = document.createElement('div')
+  panelWrapper.className = 'wp-panel-wrapper'
+  panelWrapper.appendChild(panel.render())
+  main.appendChild(panelWrapper)
+
+  // Preview grid
   const grid = new PreviewGrid(animationData)
   const wrapper = document.createElement('div')
   wrapper.className = 'preview-grid-wrapper'
